@@ -2,6 +2,9 @@ package ui;
 import model.Shop;
 import java.util.*;
 
+import exceptions.IdNumberException;
+import exceptions.IdTypeException;
+
 public class Main {
 	public final static int REGISTER_NEW = 1;
 	public final static int SHOW_TRY_ENTRY = 2;
@@ -18,17 +21,29 @@ public class Main {
 		m.startProgram();
 	}
 	public void operation(int choice) {
+		String num;
 		switch (choice) {
 		case REGISTER_NEW:
-		//	shop.register(client);
+			System.out.println("Please select the type of ID");
+			choice = sc.nextInt();
+			sc.nextLine();
+			num = sc.nextLine();
+			try {
+				shop.register(choice, num);
+			} catch ( IdTypeException e) {
+	
+				e.printStackTrace();
+			} catch (IdNumberException t) {
+				
+			}
 			break;
 
 		case SHOW_TRY_ENTRY:
-			
+
 			break;
 
 		case EXIT:
-			
+
 			break;
 
 		default:

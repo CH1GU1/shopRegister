@@ -1,6 +1,10 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.*;
+
+import exceptions.IdNumberException;
+import exceptions.IdTypeException;
 
 public class Shop {
 
@@ -35,7 +39,43 @@ public class Shop {
 	 * 
 	 * @param client
 	 */
-	public void register(Client client) {
+	public String register(int choice, String idNum) throws IdNumberException, IdTypeException{
+		String info = "";
+		String idType = ""; 
+		switch (choice) {
+		case 1:
+			idType = "CC";
+			break;
 
+		case 2:
+			idType = "PP";
+			break;
+
+		case 3:
+			idType = "CE";
+			break;
+
+		case 4:
+			idType = "TI";
+			break;
+			
+		default:
+			info += "Choice not valid";
+			break;					
+		}
+		if (idType.equals("TI")) {
+			throw new IdTypeException(idType);
+		}
+		int posFinal = idNum.length()-2; 
+		char caracterFinal = idNum.charAt(posFinal);
+		int value = caracterFinal;
+		if(LocalDate.now().getDayOfMonth()%2 != 0 && value%2 !=0) {
+			throw new IdNumberException(idNum);
+		}
+		if(LocalDate.now().getDayOfMonth()%2 == 0 && value%2 ==0) {
+			throw new IdNumberException(idNum);
+		}
+		Client c1 = new Client(idType, idNum);
+		return info;
 	}
 }
