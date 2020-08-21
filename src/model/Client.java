@@ -11,14 +11,12 @@ public class Client {
 	 * @param idNumber
 	 */
 	public Client(String idType, String idNumber) {
-		// TODO - implement Client.Client
-		throw new UnsupportedOperationException();
+		this.idType = idType;
+		this.idNum = idNumber;
 	}
-
 	public String getIdType() {
 		return this.idType;
 	}
-
 	/**
 	 * 
 	 * @param idType
@@ -26,11 +24,9 @@ public class Client {
 	public void setIdType(String idType) {
 		this.idType = idType;
 	}
-
 	public String getIdNum() {
 		return this.idNum;
 	}
-
 	/**
 	 * 
 	 * @param idNum

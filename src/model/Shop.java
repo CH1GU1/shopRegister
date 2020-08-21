@@ -5,7 +5,7 @@ import java.util.*;
 public class Shop {
 
 	public String name = "Mi barrio te quiere";
-	public ArrayList clients;
+	public ArrayList<Client> clients;
 	private int countP;
 
 	/**
@@ -13,14 +13,17 @@ public class Shop {
 	 * @param name
 	 * @param countP
 	 */
-	public Shop(String name, int countP) {
+	public Shop(int countP) {
+		this.countP = countP;
+		clients = new ArrayList<>();
 
 	}
-
+	public String getName() {
+		return this.name;
+	}
 	public int getCountP() {
 		return this.countP;
 	}
-
 	/**
 	 * 
 	 * @param countP
@@ -28,7 +31,6 @@ public class Shop {
 	public void setCountP(int countP) {
 		this.countP = countP;
 	}
-
 	/**
 	 * 
 	 * @param client
@@ -36,10 +38,4 @@ public class Shop {
 	public void register(Client client) {
 
 	}
-
-	public String infoClients() {
-		return name;
-
-	}
-
 }
