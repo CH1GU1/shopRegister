@@ -11,7 +11,11 @@ class ShopTest {
 
 	public void setupScenary1() throws IdNumberException, IdTypeException {
 		shop = new Shop(0);
-		shop.register(1, "1007778208");
+		if(LocalDate.now().getDayOfMonth()%2 != 0) {
+			shop.register(1, "1007778208");
+		} else {
+			shop.register(1, "1007778218");
+		}
 
 	}
 
@@ -25,21 +29,21 @@ class ShopTest {
 		if(LocalDate.now().getDayOfMonth()%2 != 0) {
 			shop.register(2, "1005125634");
 		} else {
-			shop.register(2, "1215075624");
+			shop.register(3, "1215075624");
 		}
 	}
 
 	@Test
 	public void testRegister_1() throws IdNumberException, IdTypeException{
 		setupScenary1();
-		assertEquals("The client was note added!", "1007778208", shop.getClients().get(0).getIdNum());
+		assertEquals("The client was not added!", 1, shop.getClients().size());
 	}
 	@Test
 	public void testRegister_2() throws IdNumberException, IdTypeException{
 		try  {
 			setupScenary2();		
 		} catch ( IdTypeException e) {
-			assertEquals("Test TI incorrect","The person has TI No valid ID to entry",e.getMessage().toString());
+			assertEquals("Test TI fault", 0,shop.getClients().size());
 		}
 	}
 
@@ -48,7 +52,7 @@ class ShopTest {
 		try  {
 			setupScenary3();		
 		} catch (IdNumberException t) {
-				assertEquals("You can not entry today, please check your penultimate digit of id and the today's date",t.getMessage().toString());
+			assertEquals("Test TI fault", 0,shop.getClients().size());
 		}
 	}
 }
