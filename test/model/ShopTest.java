@@ -1,13 +1,8 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
-
 import exceptions.IdNumberException;
 import exceptions.IdTypeException;
 
@@ -26,31 +21,34 @@ class ShopTest {
 	}
 
 	public void setupScenary3() throws IdNumberException, IdTypeException {
-		shop = new Shop(0);
-		shop.register(2, "1007775634");
-
+		shop = new Shop(0);	
+		if(LocalDate.now().getDayOfMonth()%2 != 0) {
+			shop.register(2, "1005125634");
+		} else {
+			shop.register(2, "1215075624");
+		}
 	}
 
 	@Test
 	public void testRegister_1() throws IdNumberException, IdTypeException{
 		setupScenary1();
 		assertEquals("The client was note added!", "1007778208", shop.getClients().get(0).getIdNum());
-
-
+	}
+	@Test
+	public void testRegister_2() throws IdNumberException, IdTypeException{
 		try  {
-			setupScenary2();
-			System.out.println("Caution, error on test ID type");			
+			setupScenary2();		
 		} catch ( IdTypeException e) {
 			assertEquals("Test TI incorrect","The person has TI No valid ID to entry",e.getMessage().toString());
 		}
+	}
 
-
+	@Test
+	public void testRegister_3() throws IdNumberException, IdTypeException{
 		try  {
-			setupScenary3();
-			System.out.println("Caution, error on test ID number by date");			
+			setupScenary3();		
 		} catch (IdNumberException t) {
-			assertEquals("Test ID number incorrect","You can not entry today, penultimate number is 3",t.getMessage().toString());
+				assertEquals("You can not entry today, please check your penultimate digit of id and the today's date",t.getMessage().toString());
 		}
-
 	}
 }

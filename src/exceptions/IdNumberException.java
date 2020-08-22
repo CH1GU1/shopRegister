@@ -1,9 +1,8 @@
 package exceptions;
 @SuppressWarnings("serial")
 public class IdNumberException extends Exception{
-	private int num;
-	public IdNumberException(int num){
-		super("You can not entry today, penultimate number is "+num);
+	public IdNumberException(){
+		super("You can not entry today, please check your penultimate digit of id and the today's date");
 		
 	}
 

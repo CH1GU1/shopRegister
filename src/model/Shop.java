@@ -72,10 +72,10 @@ public class Shop {
 		String posPenul = idNum.charAt(idNum.length()-2)+""; 
 		int value = Integer.parseInt(posPenul);
 		if(LocalDate.now().getDayOfMonth()%2 != 0 && value%2 !=0) {
-			throw new IdNumberException(value);
+			throw new IdNumberException();
 		}
 		if(LocalDate.now().getDayOfMonth()%2 == 0 && value%2 ==0) {
-			throw new IdNumberException(value);
+			throw new IdNumberException();
 		}
 		Client c1 = new Client(idType, idNum);
 		clients.add(c1);
