@@ -34,5 +34,4 @@ public class Client {
 	public void setIdNum(String idNum) {
 		this.idNum = idNum;
 	}
-
 }

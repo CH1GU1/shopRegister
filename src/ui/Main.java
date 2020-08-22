@@ -24,20 +24,22 @@ public class Main {
 		String num;
 		switch (choice) {
 		case REGISTER_NEW:
-			System.out.println("Please select the type of ID\n1.CC\n2.PP\n3.CE\n4.TI\n");
-			choice = sc.nextInt();
-			sc.nextLine();
+			do {
+				System.out.println("Please select the type of ID\n1.CC\n2.PP\n3.CE\n4.TI\n");
+				choice = sc.nextInt();
+				sc.nextLine();
+			} while(!((choice == 1) || (choice == 2) || (choice == 3) || (choice == 4)));	
 			System.out.println("Please enter your ID number\n");
 			num = sc.nextLine();
 			try {
 				shop.register(choice, num);
-				 System.out.println("\n**Client added!**\n");
+				System.out.println("\n**Client added!**\n");
 			} catch ( IdTypeException e) {
-	
+
 				e.printStackTrace();
 			} catch (IdNumberException t) {
 				t.printStackTrace();
-				
+
 			} finally {
 				shop.setCountP(shop.getCountP()+1);
 			}
@@ -49,10 +51,11 @@ public class Main {
 			break;
 
 		case EXIT:
-
+			System.out.println("Good bye! :)");
 			break;
 
 		default:
+			System.out.println("**Please select a correct option**\n");
 			break;
 		}	
 	}	

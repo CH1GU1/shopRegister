@@ -18,12 +18,10 @@ class ShopTest {
 		}
 
 	}
-
 	public void setupScenary2() throws IdNumberException, IdTypeException {
 		shop = new Shop(0);
 		shop.register(4, "1007775674");
 	}
-
 	public void setupScenary3() throws IdNumberException, IdTypeException {
 		shop = new Shop(0);	
 		if(LocalDate.now().getDayOfMonth()%2 != 0) {
@@ -32,7 +30,6 @@ class ShopTest {
 			shop.register(3, "1215075624");
 		}
 	}
-
 	@Test
 	public void testRegister_1() throws IdNumberException, IdTypeException{
 		setupScenary1();
@@ -46,7 +43,6 @@ class ShopTest {
 			assertEquals("Test TI fault", 0,shop.getClients().size());
 		}
 	}
-
 	@Test
 	public void testRegister_3() throws IdNumberException, IdTypeException{
 		try  {
