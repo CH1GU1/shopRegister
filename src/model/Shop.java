@@ -28,6 +28,9 @@ public class Shop {
 	public int getCountP() {
 		return this.countP;
 	}
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
 	/**
 	 * 
 	 * @param countP
@@ -66,16 +69,16 @@ public class Shop {
 		if (idType.equals("TI")) {
 			throw new IdTypeException(idType);
 		}
-		int posFinal = idNum.length()-2; 
-		char caracterFinal = idNum.charAt(posFinal);
-		int value = caracterFinal;
+		String posPenul = idNum.charAt(idNum.length()-2)+""; 
+		int value = Integer.parseInt(posPenul);
 		if(LocalDate.now().getDayOfMonth()%2 != 0 && value%2 !=0) {
-			throw new IdNumberException(idNum);
+			throw new IdNumberException(value);
 		}
 		if(LocalDate.now().getDayOfMonth()%2 == 0 && value%2 ==0) {
-			throw new IdNumberException(idNum);
+			throw new IdNumberException(value);
 		}
 		Client c1 = new Client(idType, idNum);
+		clients.add(c1);
 		return info;
 	}
 }

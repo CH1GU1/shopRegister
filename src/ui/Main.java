@@ -24,21 +24,27 @@ public class Main {
 		String num;
 		switch (choice) {
 		case REGISTER_NEW:
-			System.out.println("Please select the type of ID");
+			System.out.println("Please select the type of ID\n1.CC\n2.PP\n3.CE\n4.TI\n");
 			choice = sc.nextInt();
 			sc.nextLine();
+			System.out.println("Please enter your ID number\n");
 			num = sc.nextLine();
 			try {
 				shop.register(choice, num);
+				 System.out.println("\n**Client added!**\n");
 			} catch ( IdTypeException e) {
 	
 				e.printStackTrace();
 			} catch (IdNumberException t) {
+				t.printStackTrace();
 				
+			} finally {
+				shop.setCountP(shop.getCountP()+1);
 			}
 			break;
 
 		case SHOW_TRY_ENTRY:
+			System.out.println(+shop.getCountP()+" clients have visited the shop\n");
 
 			break;
 
@@ -51,8 +57,8 @@ public class Main {
 		}	
 	}	
 	public void showMenu() {
-		System.out.println("Welcome to "+shop.name+"\n"+shop.getCountP()+" clients have visited the shop\n");
-		System.out.println("***Please select an option***"); 
+		System.out.println("Welcome to "+shop.name+"\n");
+		System.out.println("--- Please select an option ---\n"); 
 		System.out.println("1.REGISTER A NEW CLIENT\n2.SHOW THE QUANTITY OF PEOPLE TRY TO ENTRY\n3.EXIT PROGRAM");	
 	}
 	public int readOption() {
